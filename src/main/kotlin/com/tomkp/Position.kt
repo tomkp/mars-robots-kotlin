@@ -1,6 +1,6 @@
 package com.tomkp
 
-data class Position(var coordinate: Coordinate, val orientation: Orientation) {
+data class Position(val coordinate: Coordinate, val orientation: Orientation) {
 
     fun forward(): Position {
         val newCoordinate = when (orientation) {
