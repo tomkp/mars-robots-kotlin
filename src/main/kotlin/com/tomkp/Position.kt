@@ -31,6 +31,4 @@ data class Position(var coordinate: Coordinate, val orientation: Orientation) {
         }
         return Position(coordinate, newOrientation)
     }
-
-
 }
