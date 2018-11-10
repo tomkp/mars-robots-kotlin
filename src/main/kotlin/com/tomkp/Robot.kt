@@ -4,30 +4,25 @@ import com.tomkp.Instruction.*
 
 class Robot(private val mars: Mars, var position: Position) {
 
+    var alive = true
+
     fun move(vararg instructions: Instruction) {
         println("move ${instructions.joinToString(", ")}")
         for (instruction in instructions) {
-            val alive = move(instruction)
+            move(instruction)
             if (!alive) break
         }
     }
 
-    private fun move(instruction: Instruction): Boolean {
+    private fun move(instruction: Instruction) {
         val newPosition = calculateNextPosition(instruction)
         println("move $instruction $position -> $newPosition")
-        return when {
-            mars.isOnPlanet(newPosition.coordinate) -> {
-                position = newPosition
-                true
-            }
-            mars.hasScent(position.coordinate) -> {
-                println("${newPosition.coordinate} has scent, ignore")
-                true
-            }
-            else -> {
-                println("lost at ${newPosition.coordinate}, add scent")
+        when {
+            mars.isOnPlanet(newPosition.coordinate) -> position = newPosition
+            mars.hasNoScent(position.coordinate) ->  {
+                println("lost moving to ${newPosition.coordinate}, add scent at ${position.coordinate}")
                 mars.addScent(position.coordinate)
-                false
+                alive = false
             }
         }
     }

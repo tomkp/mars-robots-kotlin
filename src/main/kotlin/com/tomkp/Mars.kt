@@ -8,5 +8,5 @@ data class Mars(val width: Int, val height: Int) {
 
     fun addScent(coordinate: Coordinate) = scents.add(coordinate)
 
-    fun hasScent(coordinate: Coordinate): Boolean = scents.contains(coordinate)
+    fun hasNoScent(coordinate: Coordinate): Boolean = !scents.contains(coordinate)
 }
