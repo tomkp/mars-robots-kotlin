@@ -7,7 +7,6 @@ class Robot(private val mars: Mars, var position: Position) {
     var alive = true
 
     fun move(vararg instructions: Instruction) {
-        println("move ${instructions.joinToString(", ")}")
         for (instruction in instructions) {
             move(instruction)
             if (!alive) break
@@ -16,11 +15,9 @@ class Robot(private val mars: Mars, var position: Position) {
 
     private fun move(instruction: Instruction) {
         val newPosition = calculateNextPosition(instruction)
-        println("move $instruction $position -> $newPosition")
         when {
             mars.isOnPlanet(newPosition.coordinate) -> position = newPosition
             mars.hasNoScent(position.coordinate) ->  {
-                println("lost moving to ${newPosition.coordinate}, add scent at ${position.coordinate}")
                 mars.addScent(position.coordinate)
                 alive = false
             }
