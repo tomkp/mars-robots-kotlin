@@ -6,8 +6,8 @@ class Robot(private val mars: Mars, var position: Position) {
 
     var alive = true
 
-    fun move(vararg instructions: Instruction) {
-        for (instruction in instructions) {
+    fun move(instructions: Instructions) {
+        for (instruction in instructions.instructions) {
             move(instruction)
             if (!alive) break
         }

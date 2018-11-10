@@ -10,35 +10,35 @@ class RobotTest {
     @Test
     fun forward() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
-        robot.move(F)
+        robot.move(Instructions(F))
         assertEquals(Position(Coordinate(1, 2), N), robot.position)
     }
 
     @Test
     fun left() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
-        robot.move(L)
+        robot.move(Instructions(L))
         assertEquals(Position(Coordinate(1, 1), W), robot.position)
     }
 
     @Test
     fun right() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
-        robot.move(R)
+        robot.move(Instructions(R))
         assertEquals(Position(Coordinate(1, 1), E), robot.position)
     }
 
     @Test
     fun sequence1() {
         val robot = Robot(Mars(5, 3), Position(Coordinate(1, 1), E))
-        robot.move(R, F, R, F, R, F, R, F)
+        robot.move(Instructions(R, F, R, F, R, F, R, F))
         assertEquals(Position(Coordinate(1, 1), E), robot.position)
     }
 
     @Test
     fun sequence2() {
         val robot = Robot(Mars(5, 3), Position(Coordinate(3, 2), N))
-        robot.move(F, R, R, F, L, L, F, F, R, R, F, L, L)
+        robot.move(Instructions(F, R, R, F, L, L, F, F, R, R, F, L, L))
         assertEquals(Position(Coordinate(3, 3), N), robot.position)
     }
 
@@ -47,15 +47,15 @@ class RobotTest {
         val mars = Mars(5, 3)
 
         val robot1 = Robot(mars, Position(Coordinate(1, 1), E))
-        robot1.move(R, F, R, F, R, F, R, F)
+        robot1.move(Instructions(R, F, R, F, R, F, R, F))
         assertEquals(Position(Coordinate(1, 1), E), robot1.position)
 
         val robot2 = Robot(mars, Position(Coordinate(3, 2), N))
-        robot2.move(F, R, R, F, L, L, F, F, R, R, F, L, L)
+        robot2.move(Instructions(F, R, R, F, L, L, F, F, R, R, F, L, L))
         assertEquals(Position(Coordinate(3, 3), N), robot2.position)
 
         val robot3 = Robot(mars, Position(Coordinate(0, 3), W))
-        robot3.move(L, L, F, F, F, L, F, L, F, L)
+        robot3.move(Instructions(L, L, F, F, F, L, F, L, F, L))
         assertEquals(Position(Coordinate(2, 3), S), robot3.position)
     }
 }
