@@ -2,6 +2,10 @@ package com.tomkp
 
 import com.tomkp.Orientation.*
 
+enum class Orientation { N, E, S, W }
+
+data class Coordinate(val x: Int, val y: Int)
+
 data class Position(val coordinate: Coordinate, val orientation: Orientation) {
 
     fun forward(): Position {
