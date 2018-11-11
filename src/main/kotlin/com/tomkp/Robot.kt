@@ -4,7 +4,7 @@ import com.tomkp.Instruction.*
 
 class Robot(private val mars: Mars, var position: Position) {
 
-    var alive = true
+    private var alive = true
 
     fun move(instructions: Instructions) {
         for (instruction in instructions.instructions) {
