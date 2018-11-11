@@ -30,4 +30,6 @@ class Robot(private val mars: Mars, var position: Position) {
                 L -> position.rotateAntiClockwise()
                 R -> position.rotateClockwise()
             }
+
+    override fun toString(): String = "$position${if (!alive) " LOST" else ""}"
 }

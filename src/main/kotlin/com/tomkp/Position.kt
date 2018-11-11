@@ -4,7 +4,9 @@ import com.tomkp.Orientation.*
 
 enum class Orientation { N, E, S, W }
 
-data class Coordinate(val x: Int, val y: Int)
+data class Coordinate(val x: Int, val y: Int) {
+    override fun toString(): String = "$x $y"
+}
 
 data class Position(val coordinate: Coordinate, val orientation: Orientation) {
 
@@ -15,7 +17,7 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
             S -> Coordinate(coordinate.x, coordinate.y -1)
             W -> Coordinate(coordinate.x - 1, coordinate.y)
         }
-        return Position(newCoordinate, orientation)
+        return copy(coordinate = newCoordinate)
     }
 
     fun rotateAntiClockwise(): Position {
@@ -25,7 +27,7 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
             S -> E
             W -> S
         }
-        return Position(coordinate, newOrientation)
+        return copy(orientation = newOrientation)
     }
 
     fun rotateClockwise(): Position {
@@ -35,6 +37,19 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
             S -> W
             W -> N
         }
-        return Position(coordinate, newOrientation)
+        return copy(orientation = newOrientation)
+    }
+
+    override fun toString(): String {
+        return "$coordinate $orientation"
+    }
+
+    companion object {
+        fun create(position: String): Position {
+            val tokens = position.split(" ")
+            val coordinate = Coordinate(tokens[0].toInt(), tokens[1].toInt())
+            val orientation = Orientation.valueOf(tokens[2])
+            return Position(coordinate, orientation)
+        }
     }
 }

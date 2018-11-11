@@ -9,4 +9,11 @@ data class Mars(val width: Int, val height: Int) {
     fun addScent(coordinate: Coordinate) = scents.add(coordinate)
 
     fun hasNoScent(coordinate: Coordinate): Boolean = !scents.contains(coordinate)
+
+    companion object {
+        fun create(dimensions: String): Mars {
+            val tokens = dimensions.split(" ")
+            return Mars(tokens[0].toInt(), tokens[1].toInt())
+        }
+    }
 }
