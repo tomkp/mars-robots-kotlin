@@ -27,5 +27,4 @@ class MissionTest {
 
         assertEquals(output, Mission.process(input))
     }
-
 }
