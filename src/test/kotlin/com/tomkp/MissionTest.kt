@@ -7,7 +7,7 @@ import kotlin.test.assertFailsWith
 class MissionTest {
 
     @Test
-    fun shouldParse() {
+    fun `should parse and run valid set of instructions`() {
         val input = """
             5 3
             1 1 E
@@ -31,7 +31,7 @@ class MissionTest {
 
 
     @Test
-    fun throwExceptionWithInvalidDimensionsOfMars() {
+    fun `should throw an Exception when creating Mars with invalid dimensions`() {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("W 9\n0 0 N\nL")
         }
@@ -41,7 +41,7 @@ class MissionTest {
     }
 
     @Test
-    fun throwExceptionWithInvalidPosition() {
+    fun `should throw an Exception when using an invalid position for the Robot`() {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("9 9\ninvalid\nL")
         }
@@ -57,7 +57,7 @@ class MissionTest {
     }
 
     @Test
-    fun throwExceptionWithInvalidOrientation() {
+    fun `should throw an Exception when using an invalid orientation for the Robot`() {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("9 9\n0 0\nL")
         }
@@ -73,7 +73,7 @@ class MissionTest {
     }
 
     @Test
-    fun throwExceptionOnInvalidInstructions() {
+    fun `should throw an Exception when using an invalid instruction`() {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("9 9\n0 0 N\nX")
         }

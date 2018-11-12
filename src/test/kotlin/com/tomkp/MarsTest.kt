@@ -7,7 +7,7 @@ import org.junit.Assert.*
 class MarsTest {
 
     @Test
-    fun isOnPlanet() {
+    fun `should return true if a coordinate is on the planet`() {
         val mars = Mars(1, 1)
         assertTrue(mars.isOnPlanet(Coordinate(0, 0)))
         assertTrue(mars.isOnPlanet(Coordinate(0, 1)))
@@ -21,7 +21,7 @@ class MarsTest {
     }
 
     @Test
-    fun scent() {
+    fun `should return true if a coordinate has no scent`() {
         val mars = Mars(1, 1)
         mars.addScent(Coordinate(0, 1))
         assertTrue(mars.hasNoScent(Coordinate(0, 0)))

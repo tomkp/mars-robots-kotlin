@@ -8,42 +8,42 @@ import org.junit.Test
 class RobotTest {
 
     @Test
-    fun forward() {
+    fun `should move Robot forwards`() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
         robot.move(Instructions(F))
         assertEquals(Position(Coordinate(1, 2), N), robot.position)
     }
 
     @Test
-    fun left() {
+    fun `should rotate Robot left`() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
         robot.move(Instructions(L))
         assertEquals(Position(Coordinate(1, 1), W), robot.position)
     }
 
     @Test
-    fun right() {
+    fun `should rotate Robot right`() {
         val robot = Robot(Mars(10, 10), Position(Coordinate(1, 1), N))
         robot.move(Instructions(R))
         assertEquals(Position(Coordinate(1, 1), E), robot.position)
     }
 
     @Test
-    fun sequence1() {
+    fun `should move Robot according to a sequence of instructions #1`() {
         val robot = Robot(Mars(5, 3), Position(Coordinate(1, 1), E))
         robot.move(Instructions(R, F, R, F, R, F, R, F))
         assertEquals(Position(Coordinate(1, 1), E), robot.position)
     }
 
     @Test
-    fun sequence2() {
+    fun `should move Robot according to a sequence of instructions #2`() {
         val robot = Robot(Mars(5, 3), Position(Coordinate(3, 2), N))
         robot.move(Instructions(F, R, R, F, L, L, F, F, R, R, F, L, L))
         assertEquals(Position(Coordinate(3, 3), N), robot.position)
     }
 
     @Test
-    fun multiRobotSequence() {
+    fun `should move Robots according to sequences of instructions`() {
         val mars = Mars(5, 3)
 
         val robot1 = Robot(mars, Position(Coordinate(1, 1), E))
