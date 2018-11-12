@@ -2,6 +2,12 @@ package com.tomkp
 
 import com.tomkp.Instruction.*
 
+enum class Instruction { L, R, F }
+
+data class Instructions(val instructions: List<Instruction>) {
+    constructor(vararg instructions: Instruction) : this(instructions.toList())
+}
+
 class Robot(private val mars: Mars, var position: Position) {
 
     private var alive = true

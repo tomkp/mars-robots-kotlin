@@ -2,6 +2,7 @@ package com.tomkp
 
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import kotlin.test.assertFailsWith
 
 class MissionTest {
 
@@ -25,6 +26,42 @@ class MissionTest {
             2 3 S
         """.trimIndent().trimMargin()
 
-        assertEquals(output, Mission.process(input))
+        assertEquals(output, Mission.run(input))
     }
+
+
+    @Test
+    fun throwExceptionWithInvalidDimensions() {
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("W 9\n0 0 N\nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 H\n0 0 N\nL")
+        }
+    }
+
+    @Test
+    fun throwExceptionWithInvalidPosition() {
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\ninvalid\nL")
+        }
+    }
+
+    @Test
+    fun throwExceptionWithMissingOrientation() {
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 a N\nL")
+        }
+    }
+
+    @Test
+    fun throwExceptionOnInvalidInstructions() {
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 0 N\nX")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 0 N\nLX")
+        }
+    }
+
 }

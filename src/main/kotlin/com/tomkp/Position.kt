@@ -43,13 +43,4 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
     override fun toString(): String {
         return "$coordinate $orientation"
     }
-
-    companion object {
-        fun create(position: String): Position {
-            val tokens = position.split(" ")
-            val coordinate = Coordinate(tokens[0].toInt(), tokens[1].toInt())
-            val orientation = Orientation.valueOf(tokens[2])
-            return Position(coordinate, orientation)
-        }
-    }
 }
