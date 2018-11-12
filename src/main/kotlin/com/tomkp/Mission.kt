@@ -22,19 +22,26 @@ object Mission {
         if (tokens.size != 3) {
             throw IllegalArgumentException("Unable to create position '$position', invalid format")
         }
-        val coordinate: Coordinate
-        try {
-            coordinate = Coordinate(tokens[0].toInt(), tokens[1].toInt())
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("Unable to create coordinate '${tokens[0]} ${tokens[1]}'", e)
-        }
+        val coordinate = createCoordinate(tokens[0], tokens[1])
         val orientation = Orientation.valueOf(tokens[2])
         return Position(coordinate, orientation)
     }
 
+    private fun createCoordinate(x: String, y: String): Coordinate {
+        try {
+            return Coordinate(x.toInt(), y.toInt())
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Unable to create Coordinate '$x $y'", e)
+        }
+    }
+
     private fun createMars(dimensions: String): Mars {
-        val tokens = dimensions.split(" ")
-        return Mars(tokens[0].toInt(), tokens[1].toInt())
+        try {
+            val tokens = dimensions.split(" ")
+            return Mars(tokens[0].toInt(), tokens[1].toInt())
+        } catch (e: Exception) {
+            throw IllegalArgumentException("Unable to create Mars with dimensions '$dimensions'", e)
+        }
     }
 
     private fun createInstructions(instructions: String):Instructions {
