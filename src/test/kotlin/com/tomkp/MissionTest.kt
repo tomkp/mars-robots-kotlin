@@ -31,7 +31,7 @@ class MissionTest {
 
 
     @Test
-    fun throwExceptionWithInvalidDimensions() {
+    fun throwExceptionWithInvalidDimensionsOfMars() {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("W 9\n0 0 N\nL")
         }
@@ -45,12 +45,30 @@ class MissionTest {
         assertFailsWith(IllegalArgumentException::class) {
             Mission.run("9 9\ninvalid\nL")
         }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 X N\nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\nX 0 N\nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\nX X N\nL")
+        }
     }
 
     @Test
-    fun throwExceptionWithMissingOrientation() {
+    fun throwExceptionWithInvalidOrientation() {
         assertFailsWith(IllegalArgumentException::class) {
-            Mission.run("9 9\n0 a N\nL")
+            Mission.run("9 9\n0 0\nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 0 \nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 0 \nL")
+        }
+        assertFailsWith(IllegalArgumentException::class) {
+            Mission.run("9 9\n0 0 X\nL")
         }
     }
 
@@ -63,5 +81,4 @@ class MissionTest {
             Mission.run("9 9\n0 0 N\nLX")
         }
     }
-
 }
