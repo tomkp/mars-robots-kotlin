@@ -2,9 +2,27 @@ package com.tomkp
 
 import com.tomkp.Orientation.*
 
-enum class Orientation { N, E, S, W }
+enum class Orientation {
+
+    N, E, S, W;
+
+    fun rotateAntiClockwise(): Orientation = when (this) {
+        N -> W
+        E -> N
+        S -> E
+        W -> S
+    }
+
+    fun rotateClockwise(): Orientation = when (this) {
+        N -> E
+        E -> S
+        S -> W
+        W -> N
+    }
+}
 
 data class Coordinate(val x: Int, val y: Int) {
+
     override fun toString(): String = "$x $y"
 }
 
@@ -21,23 +39,11 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
     }
 
     fun rotateAntiClockwise(): Position {
-        val newOrientation = when (orientation) {
-            N -> W
-            E -> N
-            S -> E
-            W -> S
-        }
-        return copy(orientation = newOrientation)
+        return copy(orientation = orientation.rotateAntiClockwise())
     }
 
     fun rotateClockwise(): Position {
-        val newOrientation = when (orientation) {
-            N -> E
-            E -> S
-            S -> W
-            W -> N
-        }
-        return copy(orientation = newOrientation)
+        return copy(orientation = orientation.rotateClockwise())
     }
 
     override fun toString(): String {
