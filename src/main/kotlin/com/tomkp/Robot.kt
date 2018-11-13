@@ -10,14 +10,16 @@ data class Instructions(val instructions: List<Instruction>) {
 
 class Robot(private val mars: Mars, var position: Position) {
 
-    private var alive = true
+    private var lost = false
 
     fun move(instructions: Instructions) {
         for (instruction in instructions.instructions) {
             move(instruction)
-            if (!alive) break
+            if (lost) break
         }
     }
+
+    fun isLost(): Boolean = lost
 
     private fun move(instruction: Instruction) {
         val newPosition = calculateNextPosition(instruction)
@@ -25,7 +27,7 @@ class Robot(private val mars: Mars, var position: Position) {
             mars.isOnPlanet(newPosition.coordinate) -> position = newPosition
             mars.hasNoScent(position.coordinate) ->  {
                 mars.addScent(position.coordinate)
-                alive = false
+                lost = true
             }
         }
     }
@@ -37,5 +39,5 @@ class Robot(private val mars: Mars, var position: Position) {
                 R -> position.rotateClockwise()
             }
 
-    override fun toString(): String = "$position${if (!alive) " LOST" else ""}"
+    override fun toString(): String = "$position${if (lost) " LOST" else ""}"
 }

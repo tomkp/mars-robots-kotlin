@@ -2,8 +2,10 @@ package com.tomkp
 
 import com.tomkp.Instruction.*
 import com.tomkp.Orientation.*
-import org.junit.Assert.assertEquals
 import org.junit.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class RobotTest {
 
@@ -49,13 +51,16 @@ class RobotTest {
         val robot1 = Robot(mars, Position(Coordinate(1, 1), E))
         robot1.move(Instructions(R, F, R, F, R, F, R, F))
         assertEquals(Position(Coordinate(1, 1), E), robot1.position)
+        assertFalse(robot1.isLost())
 
         val robot2 = Robot(mars, Position(Coordinate(3, 2), N))
         robot2.move(Instructions(F, R, R, F, L, L, F, F, R, R, F, L, L))
         assertEquals(Position(Coordinate(3, 3), N), robot2.position)
+        assertTrue(robot2.isLost())
 
         val robot3 = Robot(mars, Position(Coordinate(0, 3), W))
         robot3.move(Instructions(L, L, F, F, F, L, F, L, F, L))
         assertEquals(Position(Coordinate(2, 3), S), robot3.position)
+        assertFalse(robot3.isLost())
     }
 }
