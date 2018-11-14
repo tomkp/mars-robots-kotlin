@@ -31,7 +31,7 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
         val newCoordinate = when (orientation) {
             N -> Coordinate(coordinate.x, coordinate.y + 1)
             E -> Coordinate(coordinate.x + 1, coordinate.y)
-            S -> Coordinate(coordinate.x, coordinate.y -1)
+            S -> Coordinate(coordinate.x, coordinate.y - 1)
             W -> Coordinate(coordinate.x - 1, coordinate.y)
         }
         return copy(coordinate = newCoordinate)

@@ -25,7 +25,7 @@ class Robot(private val mars: Mars, var position: Position) {
         val newPosition = calculateNextPosition(instruction)
         when {
             mars.isOnPlanet(newPosition.coordinate) -> position = newPosition
-            mars.hasNoScent(position.coordinate) ->  {
+            mars.hasNoScent(position.coordinate) -> {
                 mars.addScent(position.coordinate)
                 lost = true
             }
