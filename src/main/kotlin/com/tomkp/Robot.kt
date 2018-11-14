@@ -22,9 +22,9 @@ class Robot(private val mars: Mars, var position: Position) {
     fun isLost(): Boolean = lost
 
     private fun move(instruction: Instruction) {
-        val newPosition = calculateNextPosition(instruction)
+        val nextPosition = calculateNextPosition(instruction)
         when {
-            mars.isOnPlanet(newPosition.coordinate) -> position = newPosition
+            mars.isOnPlanet(nextPosition.coordinate) -> position = nextPosition
             mars.hasNoScent(position.coordinate) -> {
                 mars.addScent(position.coordinate)
                 lost = true
