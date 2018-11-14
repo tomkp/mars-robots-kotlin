@@ -22,8 +22,7 @@ enum class Orientation {
 }
 
 data class Coordinate(val x: Int, val y: Int) {
-
-    override fun toString(): String = "$x $y"
+    override fun toString() = "$x $y"
 }
 
 data class Position(val coordinate: Coordinate, val orientation: Orientation) {
@@ -38,15 +37,9 @@ data class Position(val coordinate: Coordinate, val orientation: Orientation) {
         return copy(coordinate = newCoordinate)
     }
 
-    fun rotateAntiClockwise(): Position {
-        return copy(orientation = orientation.rotateAntiClockwise())
-    }
+    fun rotateAntiClockwise(): Position = copy(orientation = orientation.rotateAntiClockwise())
 
-    fun rotateClockwise(): Position {
-        return copy(orientation = orientation.rotateClockwise())
-    }
+    fun rotateClockwise(): Position = copy(orientation = orientation.rotateClockwise())
 
-    override fun toString(): String {
-        return "$coordinate $orientation"
-    }
+    override fun toString(): String = "$coordinate $orientation"
 }
