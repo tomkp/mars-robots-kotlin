@@ -44,9 +44,8 @@ object Mission {
         }
     }
 
-    private fun createInstructions(instructions: String):Instructions {
+    private fun createInstructions(instructions: String): Instructions {
         return Instructions(instructions
-                .replace(" ", "")
                 .toCharArray()
                 .map { valueOf(it.toString()) })
     }
